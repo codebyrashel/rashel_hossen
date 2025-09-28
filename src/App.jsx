@@ -1,34 +1,3 @@
-// import Hero from "./components/Hero";
-// import Brand from "./components/Brand";
-// import Navbar from "./components/Navbar";
-// import Achievement from "./components/Achievement";
-// import Testimonial from "./components/Testimonial";
-// import Projects from "./components/Projects";
-// import CaseStudies from "./components/CaseStudies";
-// import VideoTestimonials from "./components/VideoTestimonials";
-// import Blog from "./components/Blog";
-
-// function App() {
-//   return (
-//     <div className="font-sans">
-//       <Hero />
-//       <Brand />
-//       <Navbar />
-//       <Achievement />
-//       <Testimonial />
-//       <Projects />
-//       <CaseStudies />
-//       <VideoTestimonials />
-//       <Blog />
-//     </div>
-//   );
-// }
-
-// export default App;
-
-
-
-
 import { useState } from "react";
 import Hero from "./components/Hero";
 import Brand from "./components/Brand";
@@ -52,6 +21,7 @@ function App() {
 
       {organizeMode ? (
         <>
+        <main>
           <section id="ux-achievements">
             <Achievement />
           </section>
@@ -70,6 +40,7 @@ function App() {
           <section id="blog">
             <Blog />
           </section>
+        </main>
         </>
       ) : (
         <MasonryGrid />
@@ -79,3 +50,4 @@ function App() {
 }
 
 export default App;
+
