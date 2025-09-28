@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { X, Menu } from "lucide-react"; // make sure lucide-react is installed
+import { X, Menu } from "lucide-react";
 
 // Desktop + Mobile nav items
 const navItems = [
-  { id: "all", label: "All" }, // desktop only default active
+  { id: "all", label: "All" }, // desktop shows "All" as default
   { id: "ux-achievements", label: "UX Achievements" },
   { id: "testimonials", label: "Testimonials" },
   { id: "designs", label: "Designs" },
@@ -12,10 +12,10 @@ const navItems = [
   { id: "blog", label: "Blog" },
 ];
 
-// Mobile-only nav items (no "All")
+// Mobile-only nav items (we don’t clutter with "All")
 const mobileNavItems = navItems.filter((item) => item.id !== "all");
 
-const Navbar = ({ organizeMode, setOrganizeMode }) => {
+const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   // Default active: "all" for desktop, "ux-achievements" for mobile
@@ -30,18 +30,17 @@ const Navbar = ({ organizeMode, setOrganizeMode }) => {
 
   const handleScroll = (id) => {
     const section = document.getElementById(id);
-
     if (section && id !== "all") {
       section.scrollIntoView({ behavior: "smooth" });
     }
-
-    setActiveNav(id); // always update state
+    setActiveNav(id); 
     setMobileOpen(false); // close overlay after selecting
   };
 
   return (
     <nav className="w-full bg-black text-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+        
         {/* Desktop Nav */}
         <ul className="hidden md:flex space-x-6 text-sm font-medium">
           {navItems.map((item) => (
@@ -57,21 +56,7 @@ const Navbar = ({ organizeMode, setOrganizeMode }) => {
           ))}
         </ul>
 
-        {/* Organize mode toggle (desktop only) */}
-        <div className="hidden md:flex items-center space-x-2">
-          <span className="text-sm">Organize mode</span>
-          <label className="relative inline-flex items-center cursor-pointer">
-            <input
-              type="checkbox"
-              className="sr-only peer"
-              checked={organizeMode}
-              onChange={() => setOrganizeMode(!organizeMode)}
-            />
-            <div className="w-11 h-6 bg-gray-600 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-yellow-400 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-yellow-400"></div>
-          </label>
-        </div>
-
-        {/* Mobile Nav - Single Active Button */}
+        {/* Mobile Nav Button */}
         <div className="md:hidden w-full">
           <button
             onClick={() => setMobileOpen(true)}
@@ -97,7 +82,7 @@ const Navbar = ({ organizeMode, setOrganizeMode }) => {
             <X size={28} />
           </button>
 
-          {/* Nav Items (Left aligned) */}
+          {/* Nav Items (Mobile Overlay) */}
           {mobileNavItems.map((item) => (
             <button
               key={item.id}
@@ -116,7 +101,3 @@ const Navbar = ({ organizeMode, setOrganizeMode }) => {
 };
 
 export default Navbar;
-
-
-
-

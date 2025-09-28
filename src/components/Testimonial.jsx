@@ -168,9 +168,9 @@ const Testimonial = () => {
 
   return (
     <section className="bg-black text-white py-16 px-0 sm:px-4">
-      {/* ✅ Responsive container: full width on mobile, max 1440 on larger screens */}
-      <div className="w-full max-w-[1440px] mx-auto">
-        <h2 className="text-3xl font-bold mb-8 text-center">Testimonials</h2>
+      {/* Responsive container: full width on mobile, max 1440 on larger screens */}
+      <div className="w-full max-w-[1440px] mx-auto px-4">
+        <h2 className="text-3xl font-bold mb-8">Testimonials</h2>
 
         <div className="space-y-6">
           <MarqueeRow

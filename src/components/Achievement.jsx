@@ -16,7 +16,7 @@ const posts = [
       and guide more visitors toward conversion. This change directly 
       contributed to a $250k+ increase in monthly sales, proving the 
       impact of thoughtful design decisions on business outcomes.`,
-    videoUrl: "", // optional later
+    videoUrl: "",
   },
   {
     id: 2,
@@ -45,39 +45,42 @@ const UxAchievements = () => {
   const [selectedPost, setSelectedPost] = useState(null);
 
   const breakpointColumnsObj = {
-    default: 3,
-    1100: 2,
-    700: 1,
+    default: 3, // Desktop
+    1100: 2,    // Tablet
+    700: 1,     // Mobile
   };
 
   return (
-    <section className="bg-black text-white py-12 px-6">
-      <h2 className="text-3xl font-bold mb-10">UX Achievements</h2>
+    <section className="bg-black text-white py-12 px-0 sm:px-4">
+      {/* Responsive container like Testimonial section */}
+      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6">
+        <h2 className="text-3xl font-bold mb-10">UX Achievements</h2>
 
-      {/* Masonry Grid */}
-      <Masonry
-        breakpointCols={breakpointColumnsObj}
-        className="flex gap-6"
-        columnClassName="flex flex-col gap-6"
-      >
-        {posts.map((post) => (
-          <div
-            key={post.id}
-            className="bg-neutral-900 rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:scale-[1.02] transition"
-            onClick={() => setSelectedPost(post)}
-          >
-            <img
-              src={post.image}
-              alt={post.title}
-              className="w-full h-auto object-cover"
-            />
-            <div className="p-4">
-              <p className="text-gray-400 text-sm">Achievement</p>
-              <h3 className="text-lg font-semibold mt-1">{post.title}</h3>
+        {/* Masonry Grid */}
+        <Masonry
+          breakpointCols={breakpointColumnsObj}
+          className="flex gap-6"
+          columnClassName="flex flex-col gap-6"
+        >
+          {posts.map((post) => (
+            <div
+              key={post.id}
+              className="bg-neutral-900 rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:scale-[1.02] transition w-full"
+              onClick={() => setSelectedPost(post)}
+            >
+              <img
+                src={post.image}
+                alt={post.title}
+                className="w-full h-auto object-cover"
+              />
+              <div className="p-4">
+                <p className="text-gray-400 text-sm">Achievement</p>
+                <h3 className="text-lg font-semibold mt-1">{post.title}</h3>
+              </div>
             </div>
-          </div>
-        ))}
-      </Masonry>
+          ))}
+        </Masonry>
+      </div>
 
       {/* Modal */}
       {selectedPost && (

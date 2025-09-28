@@ -1,5 +1,3 @@
-// ProjectSection.jsx
-import React from "react";
 import Masonry from "react-masonry-css";
 import { ArrowRight } from "lucide-react";
 
@@ -19,8 +17,7 @@ const projects = [
   {
     name: "E-commerce App",
     type: "Mobile App",
-    mainImage:
-      "https://themewagon.com/wp-content/uploads/2019/08/top-gym-1.jpg",
+    mainImage: "https://themewagon.com/wp-content/uploads/2019/08/top-gym-1.jpg",
     images: [
       "https://themewagon.com/wp-content/uploads/2019/08/top-gym-1.jpg",
       "https://themewagon.com/wp-content/uploads/2019/08/top-gym-1.jpg",
@@ -42,25 +39,25 @@ const projects = [
 ];
 
 const breakpointColumnsObj = {
-  default: 3,
-  1100: 2,
-  700: 1,
+  default: 3,  // desktop 3
+  1100: 2,     // tablet 2
+  700: 1,      // mobile 1
 };
 
 const ProjectCard = ({ project }) => {
   return (
-    <div className="relative cursor-pointer overflow-hidden rounded-xl shadow-lg">
-      {/* Main Image with Masonry full size */}
+    <div className="relative cursor-pointer overflow-hidden rounded-xl shadow-lg bg-neutral-900">
+      {/* Main Image */}
       <div className="relative group">
         <img
           src={project.mainImage}
           alt={project.name}
-          className="w-full h-auto rounded-t-xl object-contain"
+          className="w-full h-auto rounded-t-xl object-cover"
         />
         {/* Hover Overlay */}
         <div
           onClick={() => window.open(project.link, "_blank")}
-          className="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white font-bold text-xl transition duration-300 cursor-pointer rounded-t-xl"
+          className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white font-bold text-xl transition duration-300 cursor-pointer rounded-t-xl"
         >
           Preview
         </div>
@@ -78,7 +75,7 @@ const ProjectCard = ({ project }) => {
         ))}
       </div>
 
-      {/* Project Text */}
+      {/* Text */}
       <div className="flex justify-between items-center p-4">
         <div>
           <p className="text-sm text-gray-400">{project.type}</p>
@@ -94,18 +91,22 @@ const ProjectCard = ({ project }) => {
 
 const ProjectSection = () => {
   return (
-    <div className="px-4 py-16 bg-black">
-      <h2 className="text-3xl font-bold mb-8 text-white">Projects</h2>
-      <Masonry
-        breakpointCols={breakpointColumnsObj}
-        className="flex gap-4"
-        columnClassName="bg-clip-padding"
-      >
-        {projects.map((project, idx) => (
-          <ProjectCard key={idx} project={project} />
-        ))}
-      </Masonry>
-    </div>
+    <section className="bg-black py-16 px-0 sm:px-4">
+      {/* Container like other sections */}
+      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6">
+        <h2 className="text-3xl font-bold mb-10 text-white">Projects</h2>
+
+        <Masonry
+          breakpointCols={breakpointColumnsObj}
+          className="flex gap-6"
+          columnClassName="flex flex-col gap-6"
+        >
+          {projects.map((project, idx) => (
+            <ProjectCard key={idx} project={project} />
+          ))}
+        </Masonry>
+      </div>
+    </section>
   );
 };
 
